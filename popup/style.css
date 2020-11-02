@@ -1,0 +1,41 @@
+html,
+body {
+	width: -webkit-min-content;
+	width: -moz-min-content;
+	width: min-content;
+}
+
+.hidden {
+	display: none;
+}
+
+.button {
+	margin: 3% auto;
+	padding: 4px;
+	text-align: center;
+	font-size: 1.5em;
+	cursor: pointer;
+}
+
+.row {
+	display: flex;
+	flex-flow: row nowrap;
+	padding: 0;
+	margin: 10px;
+}
+
+.button {
+	background-color: white;
+	border-radius: 10px;
+	width: 75px;
+}
+
+.button:hover {
+	background-color: #9b9b9b;
+}
+
+input,
+select {
+	box-sizing: border-box;
+	width: 175px;
+}

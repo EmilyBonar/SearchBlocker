@@ -1,6 +1,6 @@
 const buttons = document.querySelectorAll(".button");
-const del = buttons[0];
-const add = buttons[1];
+const del = buttons[1];
+const add = buttons[0];
 
 const selector = document.querySelector("select");
 
@@ -11,11 +11,15 @@ del.addEventListener("click", (e) => {
 
 add.addEventListener("click", (e) => {
 	const domainValue = add.previousElementSibling.value;
-	const prevList = browser.storage.local.get("domains");
-	console.log(domainValue);
 	browser.storage.local
-		.set({
-			domains: [...prevList, add.previousElementSibling.value],
+		.get("domains")
+		.then((prevList) => {
+			let domains = prevList.domains === undefined ? [] : prevList.domains;
+			domains.push(add.previousElementSibling.value);
+			console.log({ domains });
+			browser.storage.local.set({
+				domains: domains,
+			});
 		})
 		.then(console.log("set"));
 	addOption(domainValue);

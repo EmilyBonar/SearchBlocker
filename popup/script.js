@@ -9,7 +9,7 @@ syncOptions();
 del.addEventListener("click", (e) => {
 	console.log(selector.selectedOptions[0].text);
 	browser.storage.local.get("domains").then((domains) => {
-		deleteOption(selector.selectedOptions[0].text);
+		deleteOption(selector.selectedOptions[0].text, selector.selectedIndex);
 	});
 });
 
@@ -37,11 +37,15 @@ function addOption(domain) {
 	selector.add(option);
 }
 
-function deleteOption(domain) {
-	let domains = [...selector.options];
-	console.log(selector.options.length);
-	domains.forEach((item) => console.log(item.text));
-	//delete from storage
+function deleteOption(domain, index) {
+	//let domains = [...selector.options].slice(1);
+	selector.remove(index);
+	browser.storage.local.get("domains").then((obj) => {
+		browser.storage.local.set({
+			domains: obj.domains.filter((word) => word !== domain),
+		});
+		console.log("deleted");
+	});
 }
 
 function syncOptions() {

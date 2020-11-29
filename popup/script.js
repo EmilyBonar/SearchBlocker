@@ -15,37 +15,41 @@ del.addEventListener("click", (e) => {
 
 add.addEventListener("click", (e) => {
 	const domainValue = add.previousElementSibling.value;
-	browser.storage.local
-		.get("domains")
-		.then((prevList) => {
-			let domains = prevList.domains === undefined ? [] : prevList.domains;
-			domains.push(add.previousElementSibling.value);
-			console.log({ domains });
-			browser.storage.local.set({
-				domains: domains,
-			});
-		})
-		.then(console.log("set"));
 	addOption(domainValue);
+	add.previousElementSibling.value = "";
 });
 
 clear.addEventListener("click", (e) => clearOptions());
 
 function addOption(domain) {
-	let option = document.createElement("option");
-	option.text = domain;
-	selector.add(option);
+	if (domain != "") {
+		let option = document.createElement("option");
+		option.text = domain;
+		selector.add(option);
+		browser.storage.local
+			.get("domains")
+			.then((prevList) => {
+				let domains = prevList.domains === undefined ? [] : prevList.domains;
+				domains.push(domain);
+				console.log({ domains });
+				browser.storage.local.set({
+					domains: domains,
+				});
+			})
+			.then(console.log("set"));
+	}
 }
 
 function deleteOption(domain, index) {
-	//let domains = [...selector.options].slice(1);
-	selector.remove(index);
-	browser.storage.local.get("domains").then((obj) => {
-		browser.storage.local.set({
-			domains: obj.domains.filter((word) => word !== domain),
+	if (index != 0) {
+		selector.remove(index);
+		browser.storage.local.get("domains").then((obj) => {
+			browser.storage.local.set({
+				domains: obj.domains.filter((word) => word !== domain),
+			});
+			console.log("deleted");
 		});
-		console.log("deleted");
-	});
+	}
 }
 
 function syncOptions() {

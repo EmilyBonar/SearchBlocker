@@ -1,16 +1,30 @@
-const searchResults = document.querySelectorAll(".rc");
-console.log("test");
-getDomains().then((domains) => {
-	console.log("test3");
-	domains.forEach((domain) => {
-		console.log(domain);
-	});
+const searchResults = document.querySelectorAll(".g");
+const links = [...searchResults].map((item) => {
+	return item.querySelector("a");
 });
+console.log(links);
+
+hideBlocked();
 
 browser.storage.onChanged.addListener((changes, areaName) => {
-	console.log("test4");
+	console.log("changed");
+	hideBlocked();
 });
 
 async function getDomains() {
 	return await browser.storage.local.get("domains");
+}
+
+function hideBlocked() {
+	getDomains().then((storageObj) => {
+		let domains = storageObj.domains;
+		console.log(domains);
+		links.forEach((link, i) => {
+			if (domains.some((domain) => link.href.includes(domain))) {
+				searchResults[i].style.display = "none";
+			} else {
+				searchResults[i].style.display = "inherit";
+			}
+		});
+	});
 }

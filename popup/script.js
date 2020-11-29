@@ -4,6 +4,8 @@ const clear = document.querySelector(".clear");
 
 const selector = document.querySelector("select");
 
+syncOptions();
+
 del.addEventListener("click", (e) => {
 	console.log(selector.selectedOptions[0].text);
 	browser.storage.local.get("domains").then((domains) => {
@@ -39,9 +41,14 @@ function deleteOption(domain) {
 	let domains = [...selector.options];
 	console.log(selector.options.length);
 	domains.forEach((item) => console.log(item.text));
+	//delete from storage
 }
 
-function syncOptions() {}
+function syncOptions() {
+	browser.storage.local
+		.get("domains")
+		.then((obj) => obj.domains.forEach((domain) => addOption(domain)));
+}
 
 function clearOptions() {
 	browser.storage.local.set({

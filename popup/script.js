@@ -7,7 +7,6 @@ const selector = document.querySelector("select");
 syncOptions();
 
 del.addEventListener("click", (e) => {
-	console.log(selector.selectedOptions[0].text);
 	browser.storage.local.get("domains").then((domains) => {
 		deleteOption(selector.selectedOptions[0].text, selector.selectedIndex);
 	});
@@ -26,17 +25,13 @@ function addOption(domain) {
 		let option = document.createElement("option");
 		option.text = domain;
 		selector.add(option);
-		browser.storage.local
-			.get("domains")
-			.then((prevList) => {
-				let domains = prevList.domains === undefined ? [] : prevList.domains;
-				domains.push(domain);
-				console.log({ domains });
-				browser.storage.local.set({
-					domains: domains,
-				});
-			})
-			.then(console.log("set"));
+		browser.storage.local.get("domains").then((prevList) => {
+			let domains = prevList.domains === undefined ? [] : prevList.domains;
+			domains.push(domain);
+			browser.storage.local.set({
+				domains: domains,
+			});
+		});
 	}
 }
 
@@ -47,7 +42,6 @@ function deleteOption(domain, index) {
 			browser.storage.local.set({
 				domains: obj.domains.filter((word) => word !== domain),
 			});
-			console.log("deleted");
 		});
 	}
 }

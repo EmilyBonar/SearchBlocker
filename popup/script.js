@@ -7,9 +7,7 @@ const selector = document.querySelector("select");
 syncOptions();
 
 del.addEventListener("click", (e) => {
-	browser.storage.local.get("domains").then((domains) => {
-		deleteOption(selector.selectedOptions[0].text, selector.selectedIndex);
-	});
+	deleteOption(selector.selectedOptions[0].text, selector.selectedIndex);
 });
 
 add.addEventListener("click", (e) => {

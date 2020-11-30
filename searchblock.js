@@ -18,7 +18,11 @@ function hideBlocked() {
 	getDomains().then((storageObj) => {
 		let domains = storageObj.domains;
 		links.forEach((link, i) => {
-			if (domains.some((domain) => link.href.includes(domain))) {
+			if (
+				domains.some((domain) =>
+					link.href.toLowerCase().includes(domain.toLowerCase()),
+				)
+			) {
 				searchResults[i].style.display = "none";
 			} else {
 				searchResults[i].style.display = "inherit";

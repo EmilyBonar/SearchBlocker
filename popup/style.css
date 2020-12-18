@@ -15,19 +15,18 @@ body {
 	text-align: center;
 	font-size: 1.5em;
 	cursor: pointer;
+	background-color: white;
+	border-radius: 5px;
+	width: -webkit-max-content;
+	width: -moz-max-content;
+	width: max-content;
 }
 
 .row {
 	display: flex;
 	flex-flow: row nowrap;
 	padding: 0;
-	margin: 10px;
-}
-
-.button {
-	background-color: white;
-	border-radius: 10px;
-	width: 75px;
+	margin: 10px 0px 10px 0px;
 }
 
 .button:hover {
@@ -38,4 +37,5 @@ input,
 select {
 	box-sizing: border-box;
 	width: 175px;
+	margin-right: 2px;
 }

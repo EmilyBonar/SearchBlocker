@@ -20,17 +20,23 @@ clear.addEventListener("click", (e) => clearOptions());
 
 function addOption(domain) {
 	if (domain != "") {
-		let option = document.createElement("option");
-		option.text = domain;
-		selector.add(option);
+		addToSelector();
 		browser.storage.local.get("domains").then((prevList) => {
 			let domains = prevList.domains === undefined ? [] : prevList.domains;
-			domains.push(domain);
-			browser.storage.local.set({
-				domains: domains,
-			});
+			if (!domains.includes(domain)) {
+				domains.push(domain);
+				browser.storage.local.set({
+					domains: domains,
+				});
+			}
 		});
 	}
+}
+
+function addToSelector(domain) {
+	let option = document.createElement("option");
+	option.text = domain;
+	selector.add(option);
 }
 
 function deleteOption(domain, index) {
@@ -45,15 +51,20 @@ function deleteOption(domain, index) {
 }
 
 function syncOptions() {
+	clearSelector();
 	browser.storage.local
 		.get("domains")
-		.then((obj) => obj.domains.forEach((domain) => addOption(domain)));
+		.then((obj) => obj.domains.forEach((domain) => addToSelector(domain)));
 }
 
 function clearOptions() {
 	browser.storage.local.set({
 		domains: [],
 	});
+	clearSelector();
+}
+
+function clearSelector() {
 	[...selector.options].forEach((item, index) => {
 		if (index != 0) {
 			selector.remove(index);

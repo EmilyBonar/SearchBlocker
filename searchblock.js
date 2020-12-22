@@ -2,7 +2,20 @@ const searchResults = document.querySelectorAll(".g");
 const links = [...searchResults].map((item) => {
 	return item.querySelector("a");
 });
-console.log(links);
+
+links.forEach((result) => {
+	console.log();
+	result.insertAdjacentHTML(
+		"afterend",
+		"<br><a class=block-link>Block this domain from appearing in search results.</a>",
+	);
+	result.nextElementSibling.nextElementSibling.addEventListener(
+		"click",
+		(e) => {
+			addOption(result.host);
+		},
+	);
+});
 
 hideBlocked();
 
@@ -29,4 +42,18 @@ function hideBlocked() {
 			}
 		});
 	});
+}
+
+function addOption(domain) {
+	if (domain != "") {
+		browser.storage.local.get("domains").then((prevList) => {
+			let domains = prevList.domains === undefined ? [] : prevList.domains;
+			if (!domains.includes(domain)) {
+				domains.push(domain);
+				browser.storage.local.set({
+					domains: domains,
+				});
+			}
+		});
+	}
 }

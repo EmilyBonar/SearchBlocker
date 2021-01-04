@@ -18,6 +18,10 @@ add.addEventListener("click", (e) => {
 
 clear.addEventListener("click", (e) => clearOptions());
 
+browser.storage.onChanged.addListener((changes, areaName) => {
+	syncOptions();
+});
+
 function addOption(domain) {
 	if (domain != "") {
 		addToSelector();
@@ -65,6 +69,7 @@ function clearOptions() {
 }
 
 function clearSelector() {
+	console.log(selector.options);
 	[...selector.options].forEach((item, index) => {
 		if (index != 0) {
 			selector.remove(index);

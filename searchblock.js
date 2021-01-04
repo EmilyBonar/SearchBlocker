@@ -4,17 +4,14 @@ const links = [...searchResults].map((item) => {
 });
 
 links.forEach((result) => {
-	console.log();
-	result.insertAdjacentHTML(
-		"afterend",
-		"<br><a class=block-link>Block this domain from appearing in search results.</a>",
+	console.log(result.nextElementSibling.lastChild);
+	result.nextElementSibling.insertAdjacentHTML(
+		"beforeend",
+		" <a class=block-link style=visibility:visible>Block this domain from appearing in search results.</a>",
 	);
-	result.nextElementSibling.nextElementSibling.addEventListener(
-		"click",
-		(e) => {
-			addOption(result.host);
-		},
-	);
+	result.nextElementSibling.lastChild.addEventListener("click", (e) => {
+		addOption(result.host);
+	});
 });
 
 hideBlocked();

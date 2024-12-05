@@ -1,27 +1,28 @@
 {
-	"manifest_version": 2,
-	"name": "SearchBlocker",
-	"version": "1.2",
+  "manifest_version": 2,
+  "name": "SearchBlocker",
+  "version": "2.0",
 
-	"description": "Blocks selected domains from Google search results",
+  "description": "Blocks selected domains from Google search results",
 
-	"icons": { "48": "icons/icon.svg", "96": "icons/icon.svg" },
-	"permissions": ["activeTab", "storage"],
+  "icons": { "48": "icons/icon.svg", "96": "icons/icon.svg" },
+  "permissions": ["activeTab", "storage"],
 
-	"browser_action": {
-		"default_icon": "icons/icon.svg",
-		"default_title": "SearchBlocker",
-		"default_popup": "popup/index.html"
-	},
-	"content_scripts": [
-		{
-			"matches": ["*://*.google.com/search?*"],
-			"js": ["searchblock.js"]
-		}
-	],
-	"browser_specific_settings": {
-		"gecko": {
-			"id": "search@blocker.com"
-		}
-	}
+  "browser_action": {
+    "default_icon": "icons/icon.svg",
+    "default_title": "SearchBlocker",
+    "default_popup": "popup/index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.google.com/search?*"],
+      "js": ["searchblock.js"],
+      "css": ["searchblock.css"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "search@blocker.com"
+    }
+  }
 }

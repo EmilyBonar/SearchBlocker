@@ -1,19 +1,98 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 116 116" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;">
-    <g id="Layer1">
-        <ellipse cx="57.954" cy="57.734" rx="57.074" ry="56.707" style="fill:white;"/>
+<svg
+   width="117.61859"
+   height="117.61859"
+   viewBox="0 0 117.61859 117.61859"
+   version="1.1"
+   xml:space="preserve"
+   style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round"
+   id="svg1"
+   sodipodi:docname="icon.svg"
+   inkscape:version="1.4 (e7c3feb, 2024-10-09)"
+   inkscape:export-filename="icon.png"
+   inkscape:export-xdpi="417.89313"
+   inkscape:export-ydpi="417.89313"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs1">
+        
+        
+        
+    </defs><sodipodi:namedview
+   id="namedview1"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="10.086207"
+   inkscape:cx="59.041026"
+   inkscape:cy="59.090598"
+   inkscape:window-width="2560"
+   inkscape:window-height="1372"
+   inkscape:window-x="1920"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg1" />
+    <g
+   id="Layer1"
+   style="display:inline"
+   inkscape:label="Background Color"
+   transform="translate(1.0753755,1.0741499)">
+        <ellipse
+   cx="57.953999"
+   cy="57.734001"
+   rx="57.074001"
+   ry="56.707001"
+   style="fill:#ffffff;fill-opacity:1"
+   id="ellipse1" />
     </g>
-    <g id="Layer-1" serif:id="Layer 1" transform="matrix(1,0,0,1,-83.9916,-160.55)">
-        <g id="path3713" transform="matrix(0.707107,0.707107,-0.707107,0.707107,-0.880313,0.440156)">
-            <circle cx="250.95" cy="29.875" r="27.867" style="fill:none;stroke:black;stroke-width:6px;"/>
+    <g
+   id="g1"
+   inkscape:label="Magnifying Glass"
+   transform="translate(1.0753755,1.0741499)"><g
+     id="path3713"
+     transform="rotate(45,150.83377,-182.5043)"
+     style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round">
+            <circle
+   cx="250.95"
+   cy="29.875"
+   r="27.867001"
+   style="fill:none;stroke:#000000;stroke-width:6px"
+   id="circle1" />
+        </g><g
+     id="rect3715"
+     transform="matrix(0.707107,0.707107,-0.692501,0.692501,-84.835338,-159.70626)"
+     style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round">
+            <rect
+   x="248.513"
+   y="57.769001"
+   width="4.8730001"
+   height="50.227001"
+   style="stroke:#000000;stroke-width:2px;stroke-linejoin:round"
+   id="rect1" />
+        </g></g><g
+   id="g3731"
+   transform="rotate(-45,-92.213043,238.6352)"
+   style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round"
+   inkscape:label="Red No">
+            <circle
+   id="path3721"
+   cx="141.73199"
+   cy="218.26801"
+   r="56.325001"
+   style="display:inline;fill:none;fill-opacity:1;stroke:#d40000;stroke-width:5;stroke-dasharray:none" /><rect
+   id="rect3723"
+   x="142.83505"
+   y="165.36746"
+   width="0.20111744"
+   height="108.21947"
+   style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#d40000;stroke-width:4.81142;stroke-linecap:round;stroke-dasharray:none"
+   transform="matrix(0.99999666,-0.0025849,-0.0025849,0.99999666,-1.3432759e-7,-6.7278989e-8)" />
+            
         </g>
-        <g id="rect3715" transform="matrix(0.707107,0.707107,-0.692501,0.692501,-0.843738,0.843738)">
-            <rect x="248.513" y="57.769" width="4.873" height="50.227" style="stroke:black;stroke-width:2px;stroke-linejoin:round;"/>
-        </g>
-        <g id="g3731" transform="matrix(0.707107,-0.707107,0.707107,0.707107,-112.833,164.166)">
-            <circle id="path3721" cx="141.732" cy="218.268" r="56.325" style="fill:none;stroke:rgb(212,0,0);stroke-width:2.83px;"/>
-            <rect id="rect3723" x="142.053" y="161.895" width="0.209" height="112.461" style="fill:none;stroke:rgb(212,0,0);stroke-width:2.83px;"/>
-        </g>
-    </g>
 </svg>

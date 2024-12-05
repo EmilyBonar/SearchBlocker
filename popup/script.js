@@ -2,77 +2,72 @@ const del = document.querySelector(".delete");
 const add = document.querySelector(".add");
 const clear = document.querySelector(".clear");
 
-const selector = document.querySelector("select");
+const domainListSelect = document.querySelector("select");
 
-syncOptions();
+syncDomains();
 
 del.addEventListener("click", (e) => {
-	deleteOption(selector.selectedOptions[0].text, selector.selectedIndex);
+  handleRemoveDomain(
+    domainListSelect.selectedOptions[0].text,
+    domainListSelect.selectedIndex
+  );
 });
 
 add.addEventListener("click", (e) => {
-	const domainValue = add.previousElementSibling.value;
-	addOption(domainValue);
-	add.previousElementSibling.value = "";
+  const domainValue = add.previousElementSibling.value;
+  handleAddDomain(domainValue);
+  add.previousElementSibling.value = "";
 });
 
-clear.addEventListener("click", (e) => clearOptions());
+clear.addEventListener("click", (e) => clearDomains());
 
 browser.storage.onChanged.addListener((changes, areaName) => {
-	syncOptions();
+  syncDomains();
 });
 
-function addOption(domain) {
-	if (domain != "") {
-		addToSelector();
-		browser.storage.local.get("domains").then((prevList) => {
-			let domains = prevList.domains === undefined ? [] : prevList.domains;
-			if (!domains.includes(domain)) {
-				domains.push(domain);
-				browser.storage.local.set({
-					domains: domains,
-				});
-			}
-		});
-	}
+function handleAddDomain(domain) {
+  if (domain != "") {
+    addToSelector(domain);
+    sendMessageToTab({ action: "add", domain });
+  }
 }
 
 function addToSelector(domain) {
-	let option = document.createElement("option");
-	option.text = domain;
-	selector.add(option);
+  let domainOption = document.createElement("option");
+  domainOption.text = domain;
+  domainListSelect.add(domainOption);
 }
 
-function deleteOption(domain, index) {
-	if (index != 0) {
-		selector.remove(index);
-		browser.storage.local.get("domains").then((obj) => {
-			browser.storage.local.set({
-				domains: obj.domains.filter((word) => word !== domain),
-			});
-		});
-	}
+function handleRemoveDomain(domain, index) {
+  if (index != 0) {
+    domainListSelect.remove(index);
+    sendMessageToTab({ action: "remove", domain });
+  }
 }
 
-function syncOptions() {
-	clearSelector();
-	browser.storage.local
-		.get("domains")
-		.then((obj) => obj.domains.forEach((domain) => addToSelector(domain)));
+async function syncDomains() {
+  clearSelector();
+  const domains = await sendMessageToTab({ action: "get" });
+
+  domains.forEach((domain) => addToSelector(domain));
 }
 
-function clearOptions() {
-	browser.storage.local.set({
-		domains: [],
-	});
-	clearSelector();
+function clearDomains() {
+  sendMessageToTab({ action: "set", domains: [] });
+  clearSelector();
 }
 
 function clearSelector() {
-	console.log(selector.options);
-	[...selector.options].forEach((item, index) => {
-		if (index != 0) {
-			selector.remove(index);
-		}
-	});
+  [...domainListSelect.options].forEach((item, index) => {
+    if (index != 0) {
+      domainListSelect.remove(index);
+    }
+  });
+}
+
+async function sendMessageToTab(message) {
+  const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+  const response = await browser.tabs.sendMessage(tabs[0].id, message);
+
+  return response;
 }
